@@ -13,6 +13,12 @@ export const createProduct = async (
 			productData.imageUrl = req.file.path;
 		}
 
+		if (productData.categoryId) {
+			productData.category = productData.categoryId;
+
+			delete productData.categoryId;
+		}
+
 		const product = new productModel(productData);
 
 		await product.save();
